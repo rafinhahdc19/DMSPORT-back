@@ -69,7 +69,6 @@ const UpdateProductController = async (req, res) => {
                     return res.status(500).json({ error: 'Erro ao desfixar o produto.' });
                 }
             } else {
-                console.log("cavalo")
                 try {
                     const countVendidos = await prisma.Vendido.count();
                     if (countVendidos >= 20) {
