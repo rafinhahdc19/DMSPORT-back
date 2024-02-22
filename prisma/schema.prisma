@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  username String   @unique
+  email   String    @unique
+  senha   String   
+  status  Int       @default(0)
+  data    DateTime
+  VSlug   String    @unique
+}
+
+model Link {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  purchase   Json
+  slug    String   @unique
+  data    DateTime
+}
+
+model Produto {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  nome    String
+  desc    String
+  imgurl  String
+  value   String
+  data    DateTime
+  slug    String   @unique
+  tipos   Tipo[]
+  vendido Vendido[]
+}
+
+model Vendido {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  produtoslug  String   @unique
+  produto    Produto  @relation(fields: [produtoslug], references: [slug])
+}
+
+model Tipo {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  nome       String
+  produtoid  String
+  produto    Produto @relation(fields: [produtoid], references: [id]) // Associando um tipo a um produto
+}
+
+model Cupom {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  codigo     String   @unique
+  desconto   Int
+}
