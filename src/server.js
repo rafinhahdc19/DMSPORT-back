@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const PORT = 3001
 
+
 // Configurar o middleware bodyParser para aumentar o limite de tamanho de carga útil
 //app.use(bodyParser.json({ limit: '50mb' }));
 //app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
