@@ -12,7 +12,7 @@ const ImageDown = async (req, res) => {
     if (parsedUrl.hostname === 'photo.yupoo.com') {
       const options = {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36', 
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36',
           'Referer': "https://yupoo.com/",
           'Origin': "https://yupoo.com"
         }
@@ -25,11 +25,14 @@ const ImageDown = async (req, res) => {
       });
       res.setHeader('Cache-Control', 'public, max-age=86400');
 
-    // Configurar outros cabeçalhos necessários
-    res.set({
-      'Content-Type': imageResponse.headers['content-type'],
-      'Content-Length': imageResponse.headers['content-length']
-    });
+      // Configurar outros cabeçalhos necessários
+      res.set({
+        'Content-Type': imageResponse.headers['content-type'],
+        'Content-Length': imageResponse.headers['content-length']
+
+      });
+      res.removeHeader('Cross-Origin-Opener-Policy');
+      res.removeHeader('Cross-Origin-Resource-Policy');
       imageResponse.data.pipe(res);
     } else {
       res.redirect(imageUrl);
