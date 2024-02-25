@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const app = express()
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const PORT = 3001
 
 
