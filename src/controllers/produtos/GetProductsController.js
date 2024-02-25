@@ -14,6 +14,10 @@ const SearchProductsController = async (req, res) => {
       "subs": "france"
     },
     {
+      "term": "franca",
+      "subs": "france"
+    },
+    {
       "term": "alemanha",
       "subs": "germany"
     },
@@ -50,6 +54,10 @@ const SearchProductsController = async (req, res) => {
       "subs": "sweden"
     },
     {
+      "term": "suecia",
+      "subs": "sweden"
+    },
+    {
       "term": "noruega",
       "subs": "norway"
     },
@@ -59,6 +67,10 @@ const SearchProductsController = async (req, res) => {
     },
     {
       "term": "suíça",
+      "subs": "switzerland"
+    },
+    {
+      "term": "suiça",
       "subs": "switzerland"
     },
     {
