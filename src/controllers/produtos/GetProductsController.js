@@ -1,7 +1,80 @@
 const prisma = require("../../services/prisma")
+const puppeteer = require('puppeteer')
 
 const SearchProductsController = async (req, res) => {
-  const { Search, page } = req.body
+  let { Search, page } = req.body
+
+  const enToPt = [
+    {
+      "term": "holanda",
+      "subs": "netherlands"
+    },
+    {
+      "term": "frança",
+      "subs": "france"
+    },
+    {
+      "term": "alemanha",
+      "subs": "germany"
+    },
+    {
+      "term": "espanha",
+      "subs": "spain"
+    },
+    {
+      "term": "italia",
+      "subs": "italy"
+    },
+    {
+      "term": "inglaterra",
+      "subs": "england"
+    },
+    {
+      "term": "méxico",
+      "subs": "mexico"
+    },
+    {
+      "term": "portugal",
+      "subs": "portugal"
+    },
+    {
+      "term": "argentina",
+      "subs": "argentina"
+    },
+    {
+      "term": "brasil",
+      "subs": "brazil"
+    },
+    {
+      "term": "suécia",
+      "subs": "sweden"
+    },
+    {
+      "term": "noruega",
+      "subs": "norway"
+    },
+    {
+      "term": "dinamarca",
+      "subs": "denmark"
+    },
+    {
+      "term": "suíça",
+      "subs": "switzerland"
+    },
+    {
+      "term": "austrália",
+      "subs": "australia"
+    }
+  ];
+  
+  if (Search) {
+    const searchTerm = Search.toLowerCase();
+    const matchingSubs = enToPt.find(item => item.term === searchTerm);
+  
+    if (matchingSubs) {
+      Search = matchingSubs.subs;
+    }
+  }
 
   if (isNaN(page)) {
     return res.status(400).json({ error: 'A página deve ser um número.' });
