@@ -4,80 +4,88 @@ const puppeteer = require('puppeteer')
 const SearchProductsController = async (req, res) => {
   let { Search, page } = req.body
 
-  const enToPt = [
-    {
-      "term": "holanda",
-      "subs": "netherlands"
-    },
-    {
-      "term": "frança",
-      "subs": "france"
-    },
-    {
-      "term": "franca",
-      "subs": "france"
-    },
-    {
-      "term": "alemanha",
-      "subs": "germany"
-    },
-    {
-      "term": "espanha",
-      "subs": "spain"
-    },
-    {
-      "term": "italia",
-      "subs": "italy"
-    },
-    {
-      "term": "inglaterra",
-      "subs": "england"
-    },
-    {
-      "term": "méxico",
-      "subs": "mexico"
-    },
-    {
-      "term": "portugal",
-      "subs": "portugal"
-    },
-    {
-      "term": "argentina",
-      "subs": "argentina"
-    },
-    {
-      "term": "brasil",
-      "subs": "brazil"
-    },
-    {
-      "term": "suécia",
-      "subs": "sweden"
-    },
-    {
-      "term": "suecia",
-      "subs": "sweden"
-    },
-    {
-      "term": "noruega",
-      "subs": "norway"
-    },
-    {
-      "term": "dinamarca",
-      "subs": "denmark"
-    },
-    {
-      "term": "suíça",
-      "subs": "switzerland"
-    },
-    {
-      "term": "suiça",
-      "subs": "switzerland"
-    },
-    {
-      "term": "austrália",
-      "subs": "australia"
-    }
-  ];
+    const enToPt = [
+      {
+        "term": "holanda",
+        "subs": "netherlands"
+      },
+      {
+        "term": "frança",
+        "subs": "france"
+      },
+      {
+        "term": "franca",
+        "subs": "france"
+      },
+      {
+        "term": "alemanha",
+        "subs": "germany"
+      },
+      {
+        "term": "espanha",
+        "subs": "spain"
+      },
+      {
+        "term": "italia",
+        "subs": "italy"
+      },
+      {
+        "term": "inglaterra",
+        "subs": "england"
+      },
+      {
+        "term": "méxico",
+        "subs": "mexico"
+      },
+      {
+        "term": "portugal",
+        "subs": "portugal"
+      },
+      {
+        "term": "argentina",
+        "subs": "argentina"
+      },
+      {
+        "term": "brasil",
+        "subs": "brazil"
+      },
+      {
+        "term": "suécia",
+        "subs": "sweden"
+      },
+      {
+        "term": "suecia",
+        "subs": "sweden"
+      },
+      {
+        "term": "noruega",
+        "subs": "norway"
+      },
+      {
+        "term": "dinamarca",
+        "subs": "denmark"
+      },
+      {
+        "term": "suíça",
+        "subs": "switzerland"
+      },
+      {
+        "term": "suiça",
+        "subs": "switzerland"
+      },
+      {
+        "term": "austrália",
+        "subs": "australia"
+      },
+      {
+        "term": "japão",
+        "subs": "japan"
+      },
+      {
+        "term": "japao",
+        "subs": "japan"
+      }
+    ];
   
   if (Search) {
     const searchTerm = Search.toLowerCase();
