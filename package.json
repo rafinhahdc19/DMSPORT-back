@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
     "vercel-build": "npx prisma generate deploy"
   },
   "keywords": [],
