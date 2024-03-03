@@ -14,7 +14,7 @@ const PORT = 3001
 //app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 const limiter = rateLimit({
-    windowMs: 3000,
+    windowMs: 1000,
     max: 30,
     message: 'Muitas requisições, seja mais devagar.',
   });
