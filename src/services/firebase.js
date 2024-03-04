@@ -33,7 +33,7 @@ const serviceAccount = {
   "universe_domain": process.env.UNIVERSE_DOMAIN,
 };
 
-const Bucket = "dm-sport-ae88a.appspot.com"
+const Bucket = "dm-sports-bed20.appspot.com"
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
