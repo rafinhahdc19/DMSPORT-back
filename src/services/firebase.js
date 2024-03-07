@@ -47,7 +47,7 @@ const processImage = async (fileBuffer, res) => {
         let image = sharp(fileBuffer);
     
         // Diminuir a qualidade do arquivo
-        image = await image.jpeg({ quality: 80 }).toBuffer();
+        image = await image.jpeg({ quality: 75 }).toBuffer();
     
         // Verificar e redimensionar se necessário
         const metadata = await sharp(fileBuffer).metadata();
@@ -56,14 +56,15 @@ const processImage = async (fileBuffer, res) => {
             const newWidth = Math.round((metadata.width / metadata.height) * newHeight);
             image = await sharp(fileBuffer).resize({ width: newWidth, height: newHeight }).toBuffer();
         }
-        if (metadata.width > 1920) {
-            return res.status(403).json({msg: "erro ao processar imagem"})
+        console.log(metadata.height)
+        if (metadata.height > 6000) {
+            return res.status(403).json({msg: "erro ao processar imagemca"})
         }
     
         return image;
     }catch(err){
         console.error(err);
-        return res.status(403).json({msg: "erro ao processar imagem"})
+        return res.status(403).json({msg: "erro ao processar imagem:"+err})
     }
 };
 

@@ -1,5 +1,6 @@
 const prisma = require("../../services/prisma")
 const uuid = require('uuid');
+const axios = require("axios")
 const { deleteImage } = require("../../services/firebase")
 
 const CreateProductControllerUrl = async (req, res) => {
@@ -9,6 +10,24 @@ const CreateProductControllerUrl = async (req, res) => {
 
     if (!imgUrl) {
         return res.status(400).json({ error: 'Parâmetros inválidos.' });
+    }
+
+    try {
+        // Fazer uma solicitação HEAD para a URL da imagem
+        const response = await axios.head(imgUrl);
+
+        // Verificar o tamanho da imagem
+        const contentLength = parseInt(response.headers['content-length']);
+        const maxSize = 3 * 1024;
+        console.log("aq:"+contentLength+" max:"+maxSize)
+
+        if (contentLength > maxSize) {
+            return res.status(400).json({ error: 'O tamanho da imagem excede 5 MB.' });
+        }
+        
+    } catch (error) {
+        console.error('Erro ao criar o produto:', error);
+        return res.status(500).json({ error: 'Ocorreu um erro ao criar o produto.'+error});
     }
 
     let tipoArray;
@@ -29,6 +48,10 @@ const CreateProductControllerUrl = async (req, res) => {
 
     if (value.length > 5000 || value.length <= 0 || !value) {
         return res.status(400).json({ error: 'O valor do produto deve ter no máximo 5000 caracteres e no minimo 1 caracter.' });
+    }
+
+    if (!/^\d+$/.test(value)) {
+        return res.status(400).json({ error: 'O valor do produto deve conter apenas caracteres numéricos.' });
     }
 
     if (!Array.isArray(tipoArray) || tipoArray.some(item => typeof item !== 'string')) {

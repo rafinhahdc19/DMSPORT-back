@@ -40,6 +40,10 @@ const CreateProductController = async (req, res) => {
         return res.status(400).json({ error: 'O valor do produto deve ter no máximo 5000 caracteres e no minimo 1 caracter.' });
     }
 
+    if (!/^\d+$/.test(value)) {
+        return res.status(400).json({ error: 'O valor do produto deve conter apenas caracteres numéricos.' });
+    }
+
     if (!Array.isArray(tipoArray) || tipoArray.some(item => typeof item !== 'string')) {
         deleteImage(imgUri)
         return res.status(400).json({ error: 'O campo tipo deve ser um array de strings.' });
