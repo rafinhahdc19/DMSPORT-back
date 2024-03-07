@@ -18,7 +18,7 @@ const CreateProductControllerUrl = async (req, res) => {
 
         // Verificar o tamanho da imagem
         const contentLength = parseInt(response.headers['content-length']);
-        const maxSize = 3 * 1024;
+        const maxSize = 4 * 1024;
         console.log("aq:"+contentLength+" max:"+maxSize)
 
         if (contentLength > maxSize) {
