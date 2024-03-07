@@ -18,7 +18,7 @@ const GetProductController = async (req, res) => {
     });
     if (!products) {
       console.error('O produto não existe');
-      return res.status(500).json({ error: 'O produto não existe' });
+      return res.status(500).json({ error: 'O produto não existe.' });
     } else {
       const vendido = await prisma.Vendido.findFirst({
         where: {
