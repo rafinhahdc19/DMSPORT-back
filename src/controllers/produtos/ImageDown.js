@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { URL } = require('url');
 
-const MAX_IMAGE_SIZE = 20 * 1024 * 1024; // 20MB
+const MAX_IMAGE_SIZE = 15 * 1024 * 1024; // 20MB
 
 const ImageDown = async (req, res) => {
   const { imageUrl } = req.query;
@@ -23,6 +23,11 @@ const ImageDown = async (req, res) => {
         ...options,
         responseType: 'stream' // Definir responseType como 'stream' para obter a resposta como um stream
       });
+
+      const contentLength = imageResponse.headers['content-length'];
+      if (contentLength && parseInt(contentLength) > MAX_IMAGE_SIZE) {
+        return res.status(400).send('Tamanho da imagem excede o limite permitido.');
+      }
       res.setHeader('Cache-Control', 'public, max-age=86400');
 
       // Configurar outros cabeçalhos necessários
